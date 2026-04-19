@@ -37,7 +37,7 @@ After(async function (this: ParaBankWorld, scenario) {
   if (status === Status.FAILED) {
     logger.error(`FAILED: ${scenario.pickle.name}`);
 
-    // Guard: page might not exist if initBrowser() itself failed (CI binary missing, network down)
+    // page is null if initBrowser() threw before reaching newPage()
     if (this.page) {
       try {
         const screenshotBuffer = await this.page.screenshot({ fullPage: true });

@@ -4,3 +4,6 @@ reports/
 screenshots/
 .env
 *.log
+.claude/
+.playwright-mcp/
+CLAUDE.md

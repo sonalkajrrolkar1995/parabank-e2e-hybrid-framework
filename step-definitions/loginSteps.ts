@@ -2,8 +2,6 @@ import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 import { ParaBankWorld } from '../src/support/world';
 
-// ─── Given ────────────────────────────────────────────────────────────────────
-
 Given('I am on the ParaBank login page', async function (this: ParaBankWorld) {
   await this.loginPage.open();
 });
@@ -20,8 +18,6 @@ Given(
   }
 );
 
-// ─── When ─────────────────────────────────────────────────────────────────────
-
 When(
   'I log in with username {string} and password {string}',
   async function (this: ParaBankWorld, username: string, password: string) {
@@ -36,8 +32,6 @@ When('I submit the login form with empty credentials', async function (this: Par
 When('I log out', async function (this: ParaBankWorld) {
   await this.loginPage.logout();
 });
-
-// ─── Then ─────────────────────────────────────────────────────────────────────
 
 Then('I should be logged in successfully', async function (this: ParaBankWorld) {
   const loggedIn = await this.loginPage.isLoggedIn();

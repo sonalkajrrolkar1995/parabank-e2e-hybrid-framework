@@ -2,7 +2,6 @@ import { Given, When, Then } from '@cucumber/cucumber';
 import { expect } from '@playwright/test';
 import { ParaBankWorld } from '../src/support/world';
 
-// Fetches account IDs from overview if not already stored in scenario context
 async function ensureAccountIds(world: ParaBankWorld): Promise<string[]> {
   try {
     return world.getScenarioValue<string[]>('accountIds');

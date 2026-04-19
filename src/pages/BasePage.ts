@@ -123,8 +123,7 @@ export abstract class BasePage {
     return this.page.url();
   }
 
-  // Fallback is ONLY for infrastructure-level flakiness (stale element, DOM re-render).
-  // Never use this to hide a real app bug.
+  // only for infra flakiness (stale element after re-render) - not to mask app bugs
   protected async clickWithFallback(
     primary: Locator,
     fallback: Locator,

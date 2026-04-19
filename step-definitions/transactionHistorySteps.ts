@@ -99,7 +99,6 @@ Then(
     const first = transactions[0];
     expect(first.date.length, 'Transaction date is empty').toBeGreaterThan(0);
     expect(first.description.length, 'Transaction description is empty').toBeGreaterThan(0);
-    // At least one of debit or credit must have a value
     const hasAmount = first.debit !== null || first.credit !== null;
     expect(hasAmount, 'Transaction has neither debit nor credit amount').toBe(true);
   }
