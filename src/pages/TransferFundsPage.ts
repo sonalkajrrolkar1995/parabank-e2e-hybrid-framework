@@ -76,7 +76,7 @@ export class TransferFundsPage extends BasePage {
 
   async selectFromAccount(accountId: string): Promise<void> {
     await this.waitForVisible(this.fromAccountSelect, 'From account dropdown');
-    // ParaBank populates dropdowns via AJAX — wait for the specific option to land in the DOM
+    // ParaBank populates dropdowns via AJAX - wait for the specific option to land in the DOM
     await this.page
       .locator(`#fromAccountId option[value="${accountId}"]`)
       .waitFor({ state: 'attached', timeout: BasePage.DEFAULT_TIMEOUT });

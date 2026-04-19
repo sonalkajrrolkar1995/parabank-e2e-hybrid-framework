@@ -25,7 +25,7 @@ export class LoginPage extends BasePage {
   }
 
   private get welcomePanel() {
-    // After successful login ParaBank lands on overview.htm — "Accounts Overview" h1 is the reliable post-login indicator
+    // After successful login ParaBank lands on overview.htm - "Accounts Overview" h1 is the reliable post-login indicator
     return this.page.locator('#rightPanel h1.title');
   }
 

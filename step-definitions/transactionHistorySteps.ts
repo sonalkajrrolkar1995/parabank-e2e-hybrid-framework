@@ -10,7 +10,7 @@ Given('I navigate to account overview', async function (this: ParaBankWorld) {
 
 Given('I have at least one account', async function (this: ParaBankWorld) {
   const accountIds = await this.accountPage.getAllAccountIds();
-  expect(accountIds.length, 'No accounts found — user needs at least one account').toBeGreaterThan(0);
+  expect(accountIds.length, 'No accounts found - user needs at least one account').toBeGreaterThan(0);
   this.storeScenarioValue('accountIds', accountIds);
 });
 
@@ -71,7 +71,7 @@ When(
     const index = parseInt(accountIndex, 10);
     expect(
       index,
-      `Account index ${index} is out of range — only ${accountIds.length} account(s) found`
+      `Account index ${index} is out of range - only ${accountIds.length} account(s) found`
     ).toBeLessThan(accountIds.length);
     await this.transactionHistoryPage.openForAccount(accountIds[index]);
     this.storeScenarioValue('accountIds', accountIds);

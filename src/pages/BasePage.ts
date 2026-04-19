@@ -133,7 +133,7 @@ export abstract class BasePage {
     try {
       await this.click(primary, description);
     } catch (primaryError) {
-      this.logger.warn(`Primary locator failed for "${description}" — trying fallback`);
+      this.logger.warn(`Primary locator failed for "${description}" - trying fallback`);
       try {
         await this.click(fallback, description);
       } catch (fallbackError) {

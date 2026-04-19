@@ -14,7 +14,7 @@ Given(
     await this.loginPage.open();
     await this.loginPage.login(username, password);
     const loggedIn = await this.loginPage.isLoggedIn();
-    expect(loggedIn, `Login failed for user "${username}" — check credentials in test data`).toBe(
+    expect(loggedIn, `Login failed for user "${username}" - check credentials in test data`).toBe(
       true
     );
   }

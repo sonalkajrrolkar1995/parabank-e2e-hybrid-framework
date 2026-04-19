@@ -58,7 +58,7 @@ Feature: ParaBank Fund Transfer
       | 500.00   | success |
       | 99.99    | success |
 
-    Examples: Invalid transfers — boundary values
+    Examples: Invalid transfers - boundary values
       | amount   | outcome |
       | 0        | failure |
       | -50      | failure |

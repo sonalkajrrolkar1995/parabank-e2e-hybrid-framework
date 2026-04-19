@@ -16,7 +16,7 @@ export class ParaBankWorld extends World {
   transferFundsPage!: TransferFundsPage;
   transactionHistoryPage!: TransactionHistoryPage;
 
-  // Per-scenario storage — cleared automatically between tests because each scenario gets a fresh World instance
+  // Per-scenario storage - cleared automatically between tests because each scenario gets a fresh World instance
   scenarioData: Record<string, unknown> = {};
 
   private readonly logger = Logger.getInstance();

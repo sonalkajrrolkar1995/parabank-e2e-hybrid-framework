@@ -6,7 +6,7 @@ const reportPath = path.join(process.cwd(), 'reports');
 const jsonFile = path.join(reportPath, 'cucumber-report.json');
 
 if (!fs.existsSync(jsonFile)) {
-  console.log('No cucumber-report.json found — skipping HTML report generation.');
+  console.log('No cucumber-report.json found - skipping HTML report generation.');
   process.exit(0);
 }
 

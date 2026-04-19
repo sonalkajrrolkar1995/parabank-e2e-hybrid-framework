@@ -24,7 +24,7 @@ export class Logger {
 
   error(message: string, error?: unknown): void {
     const errMsg = error instanceof Error ? error.message : String(error ?? '');
-    console.error(`[${this.timestamp()}] [ERROR] ${message}${errMsg ? ` — ${errMsg}` : ''}`);
+    console.error(`[${this.timestamp()}] [ERROR] ${message}${errMsg ? ` - ${errMsg}` : ''}`);
   }
 
   debug(message: string): void {
