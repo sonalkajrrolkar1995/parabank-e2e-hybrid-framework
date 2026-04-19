@@ -1,0 +1,118 @@
+name: ParaBank E2E Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Cucumber tags to run (e.g. @smoke, @regression)'
+        required: false
+        default: '@smoke'
+
+env:
+  HEADLESS: 'true'
+  NODE_ENV: 'ci'
+
+jobs:
+  e2e-tests:
+    name: Run E2E Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
+
+      - name: Run smoke tests
+        if: github.event_name != 'workflow_dispatch'
+        run: npm run test:smoke
+        continue-on-error: false
+
+      - name: Run tests with custom tags
+        if: github.event_name == 'workflow_dispatch'
+        run: npx cucumber-js --tags "${{ github.event.inputs.tags }}"
+
+      - name: Generate HTML report
+        if: always()
+        run: npm run report
+        continue-on-error: true
+
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cucumber-html-report
+          path: reports/
+          retention-days: 30
+
+      - name: Upload failure screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failure-screenshots
+          path: screenshots/
+          retention-days: 14
+
+  e2e-regression:
+    name: Full Regression Suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs: e2e-tests
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
+
+      - name: Run full regression suite
+        run: npm run test:regression
+        env:
+          HEADLESS: 'true'
+
+      - name: Generate HTML report
+        if: always()
+        run: npm run report
+        continue-on-error: true
+
+      - name: Upload regression report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: regression-html-report
+          path: reports/
+          retention-days: 30
+
+      - name: Upload failure screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: regression-failure-screenshots
+          path: screenshots/
+          retention-days: 14

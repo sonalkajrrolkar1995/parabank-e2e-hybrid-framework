@@ -1,0 +1,81 @@
+{
+  "validTransfers": [
+    {
+      "id": "standard_transfer",
+      "amount": "100.00",
+      "description": "Standard transfer of $100",
+      "expectedSuccess": true,
+      "category": "valid"
+    },
+    {
+      "id": "small_transfer",
+      "amount": "0.01",
+      "description": "Minimum meaningful transfer — $0.01",
+      "expectedSuccess": true,
+      "category": "boundary"
+    },
+    {
+      "id": "large_transfer",
+      "amount": "500.00",
+      "description": "Large transfer within typical balance",
+      "expectedSuccess": true,
+      "category": "valid"
+    },
+    {
+      "id": "decimal_precision",
+      "amount": "99.99",
+      "description": "Transfer requiring 2-decimal precision",
+      "expectedSuccess": true,
+      "category": "valid"
+    }
+  ],
+  "invalidTransfers": [
+    {
+      "id": "zero_amount",
+      "amount": "0",
+      "description": "Zero amount transfer — should be rejected",
+      "expectedSuccess": false,
+      "expectedError": "Please enter a valid amount.",
+      "category": "boundary"
+    },
+    {
+      "id": "negative_amount",
+      "amount": "-50",
+      "description": "Negative amount — must never be accepted by banking system",
+      "expectedSuccess": false,
+      "expectedError": "Please enter a valid amount.",
+      "category": "boundary"
+    },
+    {
+      "id": "empty_amount",
+      "amount": "",
+      "description": "No amount entered",
+      "expectedSuccess": false,
+      "expectedError": "Please enter a valid amount.",
+      "category": "invalid"
+    },
+    {
+      "id": "non_numeric_amount",
+      "amount": "abc",
+      "description": "Non-numeric amount",
+      "expectedSuccess": false,
+      "expectedError": "Please enter a valid amount.",
+      "category": "invalid"
+    },
+    {
+      "id": "excessive_amount",
+      "amount": "9999999.99",
+      "description": "Amount exceeding available balance",
+      "expectedSuccess": false,
+      "category": "boundary"
+    }
+  ],
+  "boundaryValues": [
+    { "amount": "0",       "label": "Zero boundary",        "valid": false },
+    { "amount": "0.01",    "label": "Minimum positive",     "valid": true  },
+    { "amount": "1.00",    "label": "One dollar",           "valid": true  },
+    { "amount": "100.00",  "label": "Standard amount",      "valid": true  },
+    { "amount": "-0.01",   "label": "Minimum negative",     "valid": false },
+    { "amount": "-100",    "label": "Negative hundred",     "valid": false }
+  ]
+}

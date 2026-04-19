@@ -1,0 +1,25 @@
+{
+  "name": "parabank-hybrid-test-automation",
+  "version": "1.0.0",
+  "description": "Hybrid Test Automation Framework: Playwright + TypeScript + BDD + POM + OOP + Data-Driven for ParaBank",
+  "scripts": {
+    "test": "cucumber-js",
+    "test:login": "cucumber-js --tags @login",
+    "test:transfer": "cucumber-js --tags @transfer",
+    "test:history": "cucumber-js --tags @history",
+    "test:smoke": "cucumber-js --tags @smoke",
+    "test:regression": "cucumber-js --tags @regression",
+    "report": "node scripts/generateReport.js",
+    "clean": "rimraf reports screenshots"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.8.0",
+    "@playwright/test": "^1.59.1",
+    "@types/node": "^20.11.0",
+    "multiple-cucumber-html-reporter": "^3.7.0",
+    "playwright": "^1.44.0",
+    "rimraf": "^5.0.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}

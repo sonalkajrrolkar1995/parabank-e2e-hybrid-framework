@@ -1,0 +1,46 @@
+{
+  "validUsers": [
+    {
+      "id": "valid_user_1",
+      "username": "john",
+      "password": "demo",
+      "description": "Standard valid user — John"
+    },
+    {
+      "id": "valid_user_2",
+      "username": "jane",
+      "password": "demo",
+      "description": "Standard valid user — Jane"
+    }
+  ],
+  "invalidUsers": [
+    {
+      "id": "wrong_password",
+      "username": "john",
+      "password": "wrongpassword",
+      "expectedError": "The username and password could not be verified.",
+      "description": "Valid username, wrong password"
+    },
+    {
+      "id": "nonexistent_user",
+      "username": "nonexistentuser12345",
+      "password": "anypassword",
+      "expectedError": "The username and password could not be verified.",
+      "description": "Username does not exist"
+    },
+    {
+      "id": "empty_credentials",
+      "username": "",
+      "password": "",
+      "expectedError": "Please enter a username and password.",
+      "description": "Both fields empty"
+    },
+    {
+      "id": "empty_password",
+      "username": "john",
+      "password": "",
+      "expectedError": "Please enter a username and password.",
+      "description": "Password empty, username provided"
+    }
+  ]
+}

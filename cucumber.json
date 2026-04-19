@@ -1,0 +1,54 @@
+{
+  "default": {
+    "paths": ["features/**/*.feature"],
+    "require": [
+      "src/support/world.ts",
+      "src/support/hooks.ts",
+      "step-definitions/**/*.ts"
+    ],
+    "requireModule": ["ts-node/register"],
+    "format": [
+      "progress-bar",
+      "json:reports/cucumber-report.json",
+      "html:reports/cucumber-report.html",
+      "summary"
+    ],
+    "formatOptions": {
+      "snippetInterface": "async-await"
+    },
+    "retry": 1,
+    "retryTagFilter": "@flaky"
+  },
+  "smoke": {
+    "paths": ["features/**/*.feature"],
+    "require": [
+      "src/support/world.ts",
+      "src/support/hooks.ts",
+      "step-definitions/**/*.ts"
+    ],
+    "requireModule": ["ts-node/register"],
+    "tags": "@smoke",
+    "format": [
+      "progress-bar",
+      "json:reports/cucumber-report.json",
+      "html:reports/cucumber-report.html",
+      "summary"
+    ]
+  },
+  "regression": {
+    "paths": ["features/**/*.feature"],
+    "require": [
+      "src/support/world.ts",
+      "src/support/hooks.ts",
+      "step-definitions/**/*.ts"
+    ],
+    "requireModule": ["ts-node/register"],
+    "tags": "@regression",
+    "format": [
+      "progress-bar",
+      "json:reports/cucumber-report.json",
+      "html:reports/cucumber-report.html",
+      "summary"
+    ]
+  }
+}
